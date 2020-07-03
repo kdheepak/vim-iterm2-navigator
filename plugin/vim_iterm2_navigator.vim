@@ -23,7 +23,7 @@ command! iTerm2NavigateDown     call s:iTerm2AwareNavigate('j')
 command! iTerm2NavigateUp       call s:iTerm2AwareNavigate('k')
 command! iTerm2NavigateRight    call s:iTerm2AwareNavigate('l')
 
-function! s:TmuxCommand(direction)
+function! s:iTerm2Command(direction)
     if a:direction == 'h'
         keycode = '123'
     elseif a:direction == 'l'
