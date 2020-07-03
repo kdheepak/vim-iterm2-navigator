@@ -24,5 +24,5 @@ else
     elif [[ "$1" == "k" ]]; then
         keycode='126'
     fi
-    osascript -e "tell application \"System Events\" to key code $keycode using {option down}"
+    osascript -e "tell application \"System Events\" to key code $keycode using {command down, option down}"
 fi

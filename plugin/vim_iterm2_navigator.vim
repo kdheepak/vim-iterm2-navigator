@@ -18,31 +18,30 @@ nnoremap <silent> <c-j> :VimiTerm2NavigateDown<cr>
 nnoremap <silent> <c-k> :VimiTerm2NavigateUp<cr>
 nnoremap <silent> <c-l> :VimiTerm2NavigateRight<cr>
 
-command! VimiTerm2NavigateLeft     call s:VimiTerm2AwareNavigate('h')
-command! VimiTerm2NavigateDown     call s:VimiTerm2AwareNavigate('j')
-command! VimiTerm2NavigateUp       call s:VimiTerm2AwareNavigate('k')
-command! VimiTerm2NavigateRight    call s:VimiTerm2AwareNavigate('l')
+command! VimiTerm2NavigateLeft     call VimiTerm2AwareNavigate('h')
+command! VimiTerm2NavigateDown     call VimiTerm2AwareNavigate('j')
+command! VimiTerm2NavigateUp       call VimiTerm2AwareNavigate('k')
+command! VimiTerm2NavigateRight    call VimiTerm2AwareNavigate('l')
 
-function! s:VimiTerm2Command(direction)
+function! VimiTerm2Command(direction)
     if a:direction == 'h'
-        keycode = '123'
+        let keycode = '123'
     elseif a:direction == 'l'
-        keycode = 124
+        let keycode = '124'
     elseif a:direction == 'j'
-        keycode = 125
+        let keycode = '125'
     elseif a:direction == 'k'
-        keycode = 126
+        let keycode = '126'
     endif
-    cmd = 'osascript -e "tell application \"System Events\" to key code ' + ' using {command down, option down}"'
-    return system(cmd)
+    silent call system('osascript -e "tell application \"System Events\" to key code ' . keycode . ' using {command down, option down}"')
 endfunction
 
-function! s:VimiTerm2AwareNavigate(direction)
+function! VimiTerm2AwareNavigate(direction)
   let nr = winnr()
-  s:VimNavigate(direction)
+  call s:VimNavigate(a:direction)
   let at_window_edge = (nr == winnr())
   if at_window_edge
-    silent call s:VimiTerm2Command(direction)
+    silent call VimiTerm2Command(a:direction)
   endif
 endfunction
 
