@@ -18,11 +18,11 @@ else
     if [[ "$1" == "h" ]]; then
         keycode='123'
     elif [[ "$1" == "l" ]]; then
-        keycode=124
+        keycode='124'
     elif [[ "$1" == "j" ]]; then
-        keycode=125
+        keycode='125'
     elif [[ "$1" == "k" ]]; then
-        keycode=126
+        keycode='126'
     fi
-    osascript -e "tell application \"System Events\" to key code $keycode using {command down, option down}"
+    osascript -e "tell application \"System Events\" to key code $keycode using {option down}"
 fi
