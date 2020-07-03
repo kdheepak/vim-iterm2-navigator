@@ -13,17 +13,17 @@ function! s:VimNavigate(direction)
   endtry
 endfunction
 
-nnoremap <silent> <c-h> :iTerm2NavigateLeft<cr>
-nnoremap <silent> <c-j> :iTerm2NavigateDown<cr>
-nnoremap <silent> <c-k> :iTerm2NavigateUp<cr>
-nnoremap <silent> <c-l> :iTerm2NavigateRight<cr>
+nnoremap <silent> <c-h> :VimiTerm2NavigateLeft<cr>
+nnoremap <silent> <c-j> :VimiTerm2NavigateDown<cr>
+nnoremap <silent> <c-k> :VimiTerm2NavigateUp<cr>
+nnoremap <silent> <c-l> :VimiTerm2NavigateRight<cr>
 
-command! iTerm2NavigateLeft     call s:iTerm2AwareNavigate('h')
-command! iTerm2NavigateDown     call s:iTerm2AwareNavigate('j')
-command! iTerm2NavigateUp       call s:iTerm2AwareNavigate('k')
-command! iTerm2NavigateRight    call s:iTerm2AwareNavigate('l')
+command! VimiTerm2NavigateLeft     call s:VimiTerm2AwareNavigate('h')
+command! VimiTerm2NavigateDown     call s:VimiTerm2AwareNavigate('j')
+command! VimiTerm2NavigateUp       call s:VimiTerm2AwareNavigate('k')
+command! VimiTerm2NavigateRight    call s:VimiTerm2AwareNavigate('l')
 
-function! s:iTerm2Command(direction)
+function! s:VimiTerm2Command(direction)
     if a:direction == 'h'
         keycode = '123'
     elseif a:direction == 'l'
@@ -37,12 +37,12 @@ function! s:iTerm2Command(direction)
     return system(cmd)
 endfunction
 
-function! s:iTerm2AwareNavigate(direction)
+function! s:VimiTerm2AwareNavigate(direction)
   let nr = winnr()
   s:VimNavigate(direction)
   let at_window_edge = (nr == winnr())
   if at_window_edge
-    silent call s:iTerm2Command(direction)
+    silent call s:VimiTerm2Command(direction)
   endif
 endfunction
 

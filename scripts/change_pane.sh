@@ -12,7 +12,7 @@ PROCNAME=$(osascript -e "
 if [[ "$PROC_NAME" == *"vim"* ]];
 then
     echo '\x1b'
-    echo ":call iTerm2AwareNavigate(\"$1\")"
+    echo ":call VimiTerm2AwareNavigate(\"$1\")"
     echo '\r'
 else
     if [[ "$1" == "h" ]]; then
